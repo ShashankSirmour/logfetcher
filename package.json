@@ -2,7 +2,7 @@
   "name": "logfetcher",
   "displayName": "LogFetcher | fetch logs",
   "description": "project to fetch logs from server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "shashanksirmour",
   "icon": "images/icon.png",
   "private": true,
