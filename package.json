@@ -3,7 +3,8 @@
   "displayName": "LogFetcher | fetch logs",
   "description": "project to fetch logs from server",
   "version": "0.0.1",
-  "publisher": "shashank.sirmour",
+  "publisher": "shashanksirmour",
+  "icon": "images/icon.png",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -14,7 +15,8 @@
     "vscode": "^1.32.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Testing"
   ],
   "activationEvents": [
     "onCommand:logfetcher.fetchFile",
