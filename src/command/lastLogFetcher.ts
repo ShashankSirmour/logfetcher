@@ -35,8 +35,8 @@ export async function lastLogFetcher(context: ExtensionContext) {
   ) {
     state.password = await input.showInputBox({
       title,
-      step: 3,
-      totalSteps: 5,
+      step: 1,
+      totalSteps: 1,
       password: true,
       value: typeof state.password === "string" ? state.password : "",
       prompt: "Enter User password",
