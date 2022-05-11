@@ -191,7 +191,7 @@ export async function logFetcher(context: ExtensionContext) {
         },
         async (progress) => {
           progress.report({ increment: 0 });
-          fs.writeFile(file, stream, (err) => {
+          await fs.writeFile(file, stream, (err) => {
             if (err) console.log(err);
             workspace.openTextDocument(file).then((doc) => {
               window.showTextDocument(doc);

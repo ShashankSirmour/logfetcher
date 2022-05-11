@@ -1,4 +1,10 @@
-import { QuickPickItem, window, ExtensionContext, workspace } from "vscode";
+import {
+  QuickPickItem,
+  window,
+  ExtensionContext,
+  workspace,
+  ProgressLocation,
+} from "vscode";
 
 import * as Client from "ssh2-sftp-client";
 
@@ -89,13 +95,25 @@ export async function lastLogFetcher(context: ExtensionContext) {
       const stream = await sftp.get(remoteFilePath);
 
       const file = "C://temp//" + fileName;
-      fs.writeFile(file, stream, (err) => {
-        if (err) console.log(err);
-        workspace.openTextDocument(file).then((doc) => {
-          window.showTextDocument(doc);
-          window.showInformationMessage(`log successfully fetched`);
-        });
-      });
+
+      await window.withProgress(
+        {
+          location: ProgressLocation.Window,
+          cancellable: false,
+          title: "fetching log",
+        },
+        async (progress) => {
+          progress.report({ increment: 0 });
+          await fs.writeFile(file, stream, (err) => {
+            if (err) console.log(err);
+            workspace.openTextDocument(file).then((doc) => {
+              window.showTextDocument(doc);
+              window.showInformationMessage(`log successfully fetched`);
+            });
+          });
+          progress.report({ increment: 100 });
+        }
+      );
     } catch (error) {
       window.showErrorMessage(`error fetching log`);
     }
