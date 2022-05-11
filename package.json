@@ -1,6 +1,6 @@
 {
   "name": "logfetcher",
-  "displayName": "LogFetcher | fetch logs",
+  "displayName": "LogFetcher | Fetch Log Data with Ease",
   "description": "project to fetch logs from server",
   "version": "0.0.2",
   "publisher": "shashanksirmour",
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShashankSirmour/logdownloader"
+    "url": "https://github.com/ShashankSirmour/logfetcher"
   },
   "engines": {
     "vscode": "^1.32.0"

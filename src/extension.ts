@@ -1,6 +1,6 @@
 import { commands, ExtensionContext } from "vscode";
-import { lastLogFetcher } from "./lastLogFetcher";
-import { logFetcher } from "./logFetcher";
+import { lastLogFetcher } from "./command/lastLogFetcher";
+import { logFetcher } from "./command/logFetcher";
 
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
