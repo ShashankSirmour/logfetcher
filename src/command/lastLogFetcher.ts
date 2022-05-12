@@ -100,7 +100,7 @@ export async function lastLogFetcher(context: ExtensionContext) {
         {
           location: ProgressLocation.Window,
           cancellable: false,
-          title: "fetching log",
+          title: "Fetching log",
         },
         async (progress) => {
           progress.report({ increment: 0 });
@@ -108,17 +108,21 @@ export async function lastLogFetcher(context: ExtensionContext) {
             if (err) console.log(err);
             workspace.openTextDocument(file).then((doc) => {
               window.showTextDocument(doc);
-              window.showInformationMessage(`log successfully fetched`);
+              window.showInformationMessage(`Log successfully fetched`);
             });
           });
           progress.report({ increment: 100 });
         }
       );
     } catch (error) {
-      window.showErrorMessage(`error fetching log`);
+      window.showErrorMessage(`Error fetching log`);
     }
 
-    sftp.end();
+    try {
+      sftp.end();
+    } catch (error) {
+      window.showErrorMessage(`Error getting connection`);
+    }
   };
 
   await fetchLastFile();

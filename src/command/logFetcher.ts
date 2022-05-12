@@ -74,8 +74,8 @@ export async function logFetcher(context: ExtensionContext) {
   ) {
     state.password = await input.showInputBox({
       title,
-      step: 1,
-      totalSteps: 1,
+      step: 3,
+      totalSteps: 5,
       password: true,
       value: typeof state.password === "string" ? state.password : "",
       prompt: "Enter User password",
@@ -187,7 +187,7 @@ export async function logFetcher(context: ExtensionContext) {
         {
           location: ProgressLocation.Window,
           cancellable: false,
-          title: "fetching log",
+          title: "Fetching log",
         },
         async (progress) => {
           progress.report({ increment: 0 });
@@ -195,20 +195,20 @@ export async function logFetcher(context: ExtensionContext) {
             if (err) console.log(err);
             workspace.openTextDocument(file).then((doc) => {
               window.showTextDocument(doc);
-              window.showInformationMessage(`log successfully fetched`);
+              window.showInformationMessage(`Log successfully fetched`);
             });
           });
           progress.report({ increment: 100 });
         }
       );
     } catch (error) {
-      window.showErrorMessage(`error fetching log`);
+      window.showErrorMessage(`Error fetching log`);
     }
 
     try {
       sftp.end();
     } catch (error) {
-      // do nothing
+      window.showErrorMessage(`Error getting connection`);
     }
   };
 
